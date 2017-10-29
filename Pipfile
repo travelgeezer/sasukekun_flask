@@ -12,6 +12,7 @@ requests = "*"
 "beautifulsoup4" = "*"
 flask-sqlalchemy = "*"
 mongoengine = "*"
+flask-mongoengine = "*"
 
 
 [dev-packages]

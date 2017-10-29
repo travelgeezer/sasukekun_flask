@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d294f4d35504d48ffdf4c8f85a4340ce675b04be9c0124a43ff1884b9f12f1d6"
+            "sha256": "0ceee917e9aa91c5015ada8673712c75c3644161de574159e0b24ae6569d6067"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -63,12 +63,26 @@
             ],
             "version": "==0.12.2"
         },
+        "flask-mongoengine": {
+            "hashes": [
+                "sha256:013bd05d9eac88f7a4e69c109858a7d78924211b27a9490470ac0076acc83b3b",
+                "sha256:01b66bd9bfdef9cc9e7e7102e1f86e772e6777c36d8577b3ef5c94ba3216bde8"
+            ],
+            "version": "==0.9.3"
+        },
         "flask-sqlalchemy": {
             "hashes": [
                 "sha256:3bc0fac969dd8c0ace01b32060f0c729565293302f0c4269beed154b46bec50b",
                 "sha256:5971b9852b5888655f11db634e87725a9031e170f37c0ce7851cf83497f56e53"
             ],
             "version": "==2.3.2"
+        },
+        "flask-wtf": {
+            "hashes": [
+                "sha256:d9a9e366b32dcbb98ef17228e76be15702cd2600675668bca23f63a7947fd5ac",
+                "sha256:5d14d55cfd35f613d99ee7cba0fc3fbbe63ba02f544d349158c14ca15561cc36"
+            ],
+            "version": "==0.14.2"
         },
         "idna": {
             "hashes": [
@@ -194,6 +208,12 @@
                 "sha256:903a7b87b74635244548b30d30db4c8947fe64c5198f58899ddcd3a13c23bb26"
             ],
             "version": "==0.12.2"
+        },
+        "wtforms": {
+            "hashes": [
+                "sha256:ffdf10bd1fa565b8233380cb77a304cd36fd55c73023e91d4b803c96bc11d46f"
+            ],
+            "version": "==2.1"
         }
     },
     "develop": {}
