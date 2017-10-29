@@ -13,7 +13,14 @@ def sample_list():
         }
         return jsonify(data)
     elif request.method == 'POST':
-        return 'send request with `POST` method'
+        data = request.get_json()
+        if not data:
+            return 'No json data found', 400
+
+        result = {
+            'json data in request': data
+        }
+        return jsonify(result)
     elif request.method == 'PUT':
         return 'send request with `PUT` method'
     elif request.method == 'PATCH':
