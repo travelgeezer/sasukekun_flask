@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import click
 from flask import request, jsonify
 from flask.views import MethodView
 
@@ -9,6 +10,10 @@ from .models import Post
 
 
 app = create_app()
+
+@app.cli.command()
+def initdb():
+    click.echo('init the db')
 
 @app.route('/')
 def hello_rest():
