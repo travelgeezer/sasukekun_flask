@@ -1,4 +1,5 @@
 .PHONY: dev
 
+# Execute the pipenv shell before executing dev
 dev:
-		pipenv run flask run -h 0.0.0.0 -p 9000
+		 flask run -h 0.0.0.0 -p 8080
