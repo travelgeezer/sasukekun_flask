@@ -55,7 +55,7 @@ class PostListCreateView(MethodView):
 class PostDetailGetUpdateDeleteView(MethodView):
     def get(self, slug):
         try:
-            post = Post.object.get(slug=slug)
+            post = Post.objects.get(slug=slug)
         except Post.DoesNotExist:
             return jsonify({'error': 'post does not exist'}), 404
 
