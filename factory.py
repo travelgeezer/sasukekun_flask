@@ -12,11 +12,7 @@ db = MongoEngine()
 def create_app():
     app = Flask(__name__)
 
-    app.config['MONGODB_SETTINGS'] = {
-        'db': 'sasukekun-flask',
-        'host': 'localhost',
-        'port': 27017
-    }
+    app.config.from_object('sasukekun_flask.config')
 
     db.init_app(app)
 
