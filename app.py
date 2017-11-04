@@ -6,7 +6,7 @@ from flask import request, jsonify
 from flask.views import MethodView
 
 from .factory import create_app
-from .views.blog import PostListCreateView, PostDetailGetUpdateDeleteView
+from .blog.views import PostListCreateView, PostDetailGetUpdateDeleteView
 
 
 app = create_app()
