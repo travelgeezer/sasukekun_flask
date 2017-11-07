@@ -3,9 +3,8 @@
 import os
 from flask import Flask
 from flask.views import MethodView
-
 from flask_mongoengine import MongoEngine
-
+from flask_cors import CORS
 
 db = MongoEngine()
 
@@ -16,4 +15,6 @@ def create_app():
 
     db.init_app(app)
 
+
+    print(CORS(app))
     return app

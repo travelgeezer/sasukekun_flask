@@ -3,6 +3,63 @@
 from flask import request, jsonify
 from flask.views import MethodView
 from .models import Post
+from sasukekun_flask.app import app
+
+@app.route('/webAPI/test1', methods=['GET', 'POST'])
+def postList():
+    if request.method == 'GET':
+        posts = Post.objects.all()
+        category = request.args.get('category')
+        tag = request.args.get('tag')
+
+        if category:
+            posts = posts.filter(category=category)
+
+        if tag:
+            posts = posts.filter(tag=tag)
+
+        data = [post.to_dict() for post in posts]
+        post_dict = {
+            "code": 0,
+            "data": data,
+            "info": 'ok'
+        }
+        return jsonify(post_dict)
+    elif request.method == 'POST':
+        '''
+        Send a json data as follow will create a new blog instance
+
+        {
+            "title": "Title1",
+            "slug": "title-1",
+            "abstract": "Abstract for this article",
+            "raw": "The article content",
+            "author": "geezer.",
+            "category": "default",
+            "tags": ["tag1", "tag2"]
+        }
+        '''
+
+        data = request.get_json()
+
+        article = Post()
+        article.title = data.get('title')
+        article.slug = data.get('slug')
+        article.abstract = data.get('abstract')
+        article.raw = data.get('raw')
+        article.author = data.get('author')
+        article.category = data.get('category')
+        article.tags = data.get('tags')
+
+        article.save()
+
+        post_dict = {
+            "code": 0,
+            "data": article.to_dict(),
+            "info": 'ok'
+        }
+
+        return jsonify(post_dict);
 
 class PostListCreateView(MethodView):
     def get(self):
