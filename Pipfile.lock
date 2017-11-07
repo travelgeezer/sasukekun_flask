@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0ceee917e9aa91c5015ada8673712c75c3644161de574159e0b24ae6569d6067"
+            "sha256": "3285c1e8739d702928273893f28a2aa68fbf9eacf6a8a85fe56fe811b40b8c92"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -37,10 +37,10 @@
         },
         "certifi": {
             "hashes": [
-                "sha256:54a07c09c586b0e4c619f02a5e94e36619da8e2b053e20f594348c0611803704",
-                "sha256:40523d2efb60523e113b44602298f0960e900388cf3bb6043f645cf57ea9e3f5"
+                "sha256:244be0d93b71e93fc0a0a479862051414d0e00e16435707e5bf5000f92e04694",
+                "sha256:5ec74291ca1136b40f0379e1128ff80e866597e4e2c1e755739a913bbc3613c0"
             ],
-            "version": "==2017.7.27.1"
+            "version": "==2017.11.5"
         },
         "chardet": {
             "hashes": [
@@ -62,6 +62,14 @@
                 "sha256:49f44461237b69ecd901cc7ce66feea0319b9158743dd27a2899962ab214dac1"
             ],
             "version": "==0.12.2"
+        },
+        "flask-cors": {
+            "hashes": [
+                "sha256:55eb3864b4290f939ff19a2250fcb47d8c0f63d250c6780b922629299d011ec8",
+                "sha256:ac4b81b3d90f5f18714c995c807f94501df8c9bbc22ef4261c1cd850748c3850",
+                "sha256:62ebc5ad80dc21ca0ea9f57466c2c74e24a62274af890b391790c260eb7b754b"
+            ],
+            "version": "==3.0.3"
         },
         "flask-mongoengine": {
             "hashes": [
@@ -112,10 +120,10 @@
         },
         "mongoengine": {
             "hashes": [
-                "sha256:19807c0932703c3db9c62692165e6dca730c40355f292975663faebd9821ac84",
-                "sha256:4608ffce39bc95f9874b094e9dfe0153245e18957ba8df8dddcbc7c6bc43a020"
+                "sha256:996e0aba34e0be3834cba19a2ac77aaeebbd7b595b6b896266a2aa41cad3566e",
+                "sha256:f8fed3871dfcefd421d3a3be1b43b3b9a1622db6a4271d78f15f494e51003f75"
             ],
-            "version": "==0.14.3"
+            "version": "==0.15.0"
         },
         "pymongo": {
             "hashes": [
@@ -191,9 +199,9 @@
         },
         "sqlalchemy": {
             "hashes": [
-                "sha256:f1191e29e35b6fe1aef7175a09b1707ebb7bd08d0b17cb0feada76c49e5a2d1e"
+                "sha256:8b79a5ed91cdcb5abe97b0045664c55c140aec09e5dd5c01303e23de5fe7a95a"
             ],
-            "version": "==1.1.14"
+            "version": "==1.1.15"
         },
         "urllib3": {
             "hashes": [
