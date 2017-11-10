@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import datetime
-from sasukekun_flask.factory import db
+from datetime import datetime
+from sasukekun_flask.ext import db
 
 class Post(db.Document):
     title = db.StringField(max_length=255, required=True)
@@ -16,7 +16,7 @@ class Post(db.Document):
 
 
     def save(self, *args, **kw):
-        now = datetime.datetime.now()
+        now = datetime.now()
         if not self.pub_time:
             self.pub_time = now
             self.update_time = now
