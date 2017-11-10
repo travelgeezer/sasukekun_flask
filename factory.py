@@ -2,11 +2,10 @@
 
 import os
 from flask import Flask
-from flask.views import MethodView
-from flask_mongoengine import MongoEngine
 from flask_cors import CORS
+from .ext import db
 from .json_response import JSONResponse
-db = MongoEngine()
+
 
 def create_app():
     app = Flask(__name__)
