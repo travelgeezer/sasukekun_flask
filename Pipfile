@@ -5,6 +5,7 @@ verify_ssl = true
 name = "pypi"
 
 
+
 [packages]
 
 flask = "*"
@@ -18,7 +19,6 @@ python-magic = "*"
 pillow = "*"
 "cropresize2" = "*"
 short-url = "*"
-jedi = "<0.9"
 libmagic = "*"
 
 
