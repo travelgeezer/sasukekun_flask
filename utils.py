@@ -6,7 +6,9 @@ def base_url(url, base='/webAPI/'):
     return u
 
 def _urljoin(base, url):
-    return base + url.replace('/', '', 1)
+    if (url[0] == '/'):
+        return base + url[1:]
+    return base + url
 
 def format_response(code = 0, data = {}, info = 'ok'):
     """
