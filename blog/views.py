@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from flask import request, Blueprint
-from flask.views import MethodView
 from .models import Post
 from sasukekun_flask import utils
 
