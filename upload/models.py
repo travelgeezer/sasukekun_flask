@@ -1,10 +1,13 @@
 import os
 import uuid
 import cropresize2
+import short_url
+from flask import request
 from PIL import Image
 from datetime import datetime
 from sasukekun_flask.ext import db
-from werkzeug.utils import cached_property
+from sasukekun_flask.utils import base_url
+from sasukekun_flask.config import API_IMAGE
 from .utils import get_file_path, get_file_md5
 from .mimes import AUDIO_MIMES, IMAGE_MIMES, VIDEO_MIMES
 
@@ -51,9 +54,14 @@ class PasteFile(db.Document):
     @classmethod
     def get_by_md5(cls, filemd5):
         try:
-            return cls.objects.get(filemd5=filemd5).first()
+            return cls.objects.get(filemd5=filemd5)
         except cls.DoesNotExist:
             return None
+
+    @classmethod
+    def get_by_filehash(cls, filehash, code=404):
+        print(cls.objects.get(filehash=filehash).path)
+        return cls.objects.get(filehash=filehash)
 
     @classmethod
     def create_by_uploaded_file(cls, uploaded_file):
@@ -73,9 +81,18 @@ class PasteFile(db.Document):
         return rst
 
 
+    def get_url(self, subtype):
+        return 'http://{host}{subtype}{filehash}'.format(
+            subtype=base_url(subtype, base=API_IMAGE),
+            host=request.host,
+            filehash=self.filehash
+        )
+
     def to_dict(self):
         file_dict = {}
 
+        file_dict['id'] = str(self.id)
+        file_dict['image_url'] = self.image_url
         file_dict['filename'] = self.filename
         file_dict['filehash'] = self.filehash
         file_dict['filemd5'] = self.filemd5
@@ -84,6 +101,10 @@ class PasteFile(db.Document):
         file_dict['size'] = self.size
 
         return file_dict
+
+    @property
+    def image_url(self):
+        return self.get_url('/upload/')
 
     @property
     def path(self):
