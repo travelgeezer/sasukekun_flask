@@ -33,5 +33,5 @@ def humanize_bytes(bytesize, precision=2):
         if bytesize >= factor:
             break
     return '%.*f %s' % (precision, bytesize / factor, suffix)
-p
+
 get_file_path = partial(os.path.join, HERE, UPLOAD_FOLDER)
