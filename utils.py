@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-def base_url(url, base='/webAPI/'):
+from .config import API_WEB
+
+def base_url(url, base=API_WEB):
     u = _urljoin(base, url)
     print(u)
     return u
