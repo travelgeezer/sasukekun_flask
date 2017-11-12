@@ -1,13 +1,19 @@
-from flask import request, Blueprint
+from flask import request, Blueprint, send_file
 from sasukekun_flask import utils
+from sasukekun_flask.config import API_IMAGE
 from .models import PasteFile
+
+ONE_MONTH = 60 * 60 * 24 * 30
 
 upload = Blueprint('upload', __name__)
 
 @upload.route(utils.base_url('/upload/'), methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'GET':
-        return utils.format_response(data='show file list.')
+        paste_files = PasteFile.objects.all()
+        data = [paste_file.to_dict() for paste_file in paste_files]
+        return utils.format_response(data=data)
+
     elif request.method == 'POST':
         uploaded_file = request.files['file']
         w = request.form.get('w')
@@ -22,3 +28,16 @@ def upload_file():
         paste_file.save()
 
         return utils.format_response(data=paste_file.to_dict())
+
+
+@upload.route(utils.base_url('/upload/<filehash>/', base=API_IMAGE),
+              methods=['GET'])
+def download(filehash):
+    paste_file = PasteFile.get_by_filehash(filehash)
+
+    return send_file(
+        open(paste_file.path, 'rb'),
+        mimetype='application/octet-stream',
+        cache_timeout=ONE_MONTH,
+        as_attachment=True,
+        attachment_filename=paste_file.filename.encode('utf-8'))
