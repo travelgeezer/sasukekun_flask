@@ -8,15 +8,6 @@ def base_url(level, url, base=API_WEB):
     print(base + level + url)
     return base + level + url
 
-
-def _urljoin(base, level, url):
-    path = ''
-    if (level[0] == '/'):
-        path = base + url[1:]
-    if (url[0] == '/'):
-        return path + url[1:]
-    return path
-
 def v1(url, base=API_WEB):
     return base_url(level='v1', url=url, base=base)
 
