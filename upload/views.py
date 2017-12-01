@@ -11,7 +11,7 @@ upload = Blueprint('upload', __name__)
 def upload_file():
     if request.method == 'GET':
         paste_files = PasteFile.objects.all()
-        data = [paste_file.to_dict() for paste_file in paste_files]
+        data = [paste_file.json for paste_file in paste_files]
         return format_response(data=data)
 
     elif request.method == 'POST':

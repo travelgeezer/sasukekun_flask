@@ -2,6 +2,7 @@ import os
 import uuid
 import cropresize2
 import short_url
+import json
 from flask import request
 from PIL import Image
 from datetime import datetime
@@ -101,6 +102,22 @@ class PasteFile(db.Document):
         file_dict['size'] = self.size
 
         return file_dict
+
+    @property
+    def __dict__(self):
+        return {
+            'id': str(self.id),
+            'image_url': self.image_url,
+            'filename': self.filename,
+            'filehash': self.filehash,
+            'uploadtime': self.uploadtime,
+            'mimetype': self.mimetype,
+            'size': self.size
+        }
+
+    @property
+    def json(self):
+        return json.dumps(self.__dict__)
 
     @property
     def image_url(self):

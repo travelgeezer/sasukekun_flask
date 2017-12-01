@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import json
 from datetime import datetime
 from sasukekun_flask.ext import db
 
@@ -37,6 +37,24 @@ class Post(db.Document):
         post_dict['tags'] = self.tags
 
         return post_dict
+
+    @property
+    def __dict__(self):
+        return {
+            'title': self.title,
+            'slug': self.slug,
+            'abstract': self.abstract,
+            'raw': self.raw,
+            'pub_time': self.pub_time,
+            'update_time': self.update_time,
+            'author': self.author,
+            'category': self.category,
+            'tags': self.tags
+        }
+
+    @property
+    def json(self):
+        return json.dumps(self.__dict__)
 
     def __unicode__(self):
         return self.title

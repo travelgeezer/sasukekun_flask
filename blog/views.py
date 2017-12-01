@@ -19,7 +19,7 @@ def postListAndCreateBlog():
         if tag:
             posts = posts.filter(tag=tag)
 
-        data = [post.to_dict() for post in posts]
+        data = [post.json for post in posts]
         return format_response(data=data)
 
     elif request.method == 'POST':
@@ -78,7 +78,7 @@ def postListAndCreateBlog():
 
         article.save()
 
-        return format_response(data=article.to_dict())
+        return format_response(data=article.json)
 
 
 @blog.route(v1('/posts/<slug>/'), methods=['GET', 'PUT', 'PATCH', 'DELETE'])
@@ -88,7 +88,7 @@ def postDetail(slug):
             post = Post.objects.get(slug=slug)
         except Post.DoesNotExist:
             return format_response(code=404, info='post does not exist')
-        return format_response(data=post.to_dict())
+        return format_response(data=post.json)
 
     elif request.method == 'PUT':
         try:
@@ -129,7 +129,7 @@ def postDetail(slug):
 
         post.save()
 
-        return format_response(data=post.to_dict())
+        return format_response(data=post.json)
 
     elif request.method == 'PATCH':
         try:
@@ -147,7 +147,7 @@ def postDetail(slug):
         post.category = data.get('category') or post.category
         post.tags = data.get('tags') or post.tags
 
-        return format_response(data=post.to_dict())
+        return format_response(data=post.json)
 
     elif request.method == 'DELETE':
         try:
