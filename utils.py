@@ -4,10 +4,10 @@ from .config import API_WEB
 
 def base_url(level, url, base=API_WEB):
 
-    if (base[0] != '/' or base[len(base) -1] != '/'):
+    if base[0] != '/' or base[len(base) -1] != '/':
         raise ValueError('The base format error must be in the format of "/base/"')
 
-    if (url[0] != '/' or url[len(url) -1] != '/'):
+    if url[0] != '/' or url[len(url) -1] != '/':
         raise ValueError('The url format error must be in the format of "/url/"')
 
     print(base + level + url)
