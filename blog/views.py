@@ -37,7 +37,7 @@ def postListAndCreateBlog():
         }
         '''
         data = request.get_json()
-
+        # TODO: fix this
         try:
             post = Post.objects.get(slug=data.get('slug'))
             return utils.format_response(code=409, info='This blog exists.')
