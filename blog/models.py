@@ -23,21 +23,6 @@ class Post(db.Document):
 
         return super(Post, self).save(*args, **kw)
 
-    def to_dict(self):
-        post_dict = {}
-
-        post_dict['title'] = self.title
-        post_dict['slug'] = self.slug
-        post_dict['abstract'] = self.abstract
-        post_dict['raw'] = self.raw
-        post_dict['pub_time'] = self.pub_time
-        post_dict['update_time'] = self.update_time
-        post_dict['author'] = self.author
-        post_dict['category'] = self.category
-        post_dict['tags'] = self.tags
-
-        return post_dict
-
     @property
     def __dict__(self):
         return {

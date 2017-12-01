@@ -89,19 +89,6 @@ class PasteFile(db.Document):
             filehash=self.filehash
         )
 
-    def to_dict(self):
-        file_dict = {}
-
-        file_dict['id'] = str(self.id)
-        file_dict['image_url'] = self.image_url
-        file_dict['filename'] = self.filename
-        file_dict['filehash'] = self.filehash
-        file_dict['filemd5'] = self.filemd5
-        file_dict['uploadtime'] = self.uploadtime
-        file_dict['mimetype'] = self.mimetype
-        file_dict['size'] = self.size
-
-        return file_dict
 
     @property
     def __dict__(self):
