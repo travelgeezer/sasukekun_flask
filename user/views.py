@@ -13,8 +13,8 @@ def user_info():
         return format_response(data=data)
 
     if request.method == 'POST':
+        # TODO: fix not params error
         data = request.get_json()
-
         name = data.get('name')
         password = data.get('password')
         print('name ', name)
