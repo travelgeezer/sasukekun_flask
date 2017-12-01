@@ -37,23 +37,48 @@ def postListAndCreateBlog():
         }
         '''
         data = request.get_json()
-        # TODO: fix this
-        try:
-            post = Post.objects.get(slug=data.get('slug'))
-            return format_response(code=409, info='This blog exists.')
-        except Post.DoesNotExist:
-            article = Post()
-            article.title = data.get('title')
-            article.slug = data.get('slug')
-            article.abstract = data.get('abstract')
-            article.raw = data.get('raw')
-            article.author = data.get('author')
-            article.category = data.get('category')
-            article.tags = data.get('tags')
 
-            article.save()
+        title = data.get('title')
+        slug = data.get('slug')
+        abstract = data.get('abstract')
+        raw = data.get('raw')
+        author = data.get('author')
+        category = data.get('category')
+        tags = data.get('tags')
 
-            return format_response(data=article.to_dict())
+        if not title:
+            return format_response(code=400, info='title is needed in request data')
+
+        if not slug:
+            return format_response(code=400, info='title is needed in request data')
+
+        if not abstract:
+            return format_response(code=400, info='abstract is needed in request data')
+
+        if not raw:
+            return format_response(code=400, info='raw is needed in request data')
+
+        if not author:
+            return format_response(code=400, info='author is needed in request data')
+
+        if not category:
+            return format_response(code=400, info='category is needed in request data')
+
+        if not tags:
+            return format_response(code=400, info='tags is needed in request data')
+
+        article = Post()
+        article.title = title
+        article.slug = slug
+        article.abstract = abstract
+        article.raw = raw
+        article.author = author
+        article.category = category
+        article.tags = tags
+
+        article.save()
+
+        return format_response(data=article.to_dict())
 
 
 @blog.route(v1('/posts/<slug>/'), methods=['GET', 'PUT', 'PATCH', 'DELETE'])
