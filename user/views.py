@@ -9,7 +9,7 @@ user = Blueprint('user', __name__)
 def user_info():
     if request.method == 'GET':
         users = User.objects.all()
-        data = [user.json() for user in users]
+        data = [user.json for user in users]
         return format_response(data=data)
 
     if request.method == 'POST':
@@ -29,4 +29,4 @@ def user_info():
 
         user.save()
 
-        return format_response(data=user.json())
+        return format_response(data=user.json)

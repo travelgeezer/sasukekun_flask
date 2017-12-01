@@ -18,6 +18,7 @@ class User(db.Document):
         # Encrypted password
         return password
 
+    @property
     def json(self):
         return json.dumps(self.__dict__)
 
