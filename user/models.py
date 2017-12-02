@@ -16,7 +16,6 @@ class User(db.Document):
 
 
     def verify(self, password):
-        print('verify:')
         return bcrypt.check_password_hash(self.password, password)
 
 
@@ -28,6 +27,5 @@ class User(db.Document):
     @property
     def __dict__(self):
         return {
-            "name": self.name,
-            "password":self.password
+            "name": self.name
         }

@@ -28,6 +28,12 @@ def register():
         if not password:
             return format_response(code=400, info='password is needed in request data')
 
+        try:
+            User.objects.get(name=name)
+            return format_response(code=409, info='user exist')
+        except User.DoesNotExist:
+            pass
+
         user = User()
         user.name = name
         user.password = user.encryption(password)
@@ -44,15 +50,12 @@ def login():
         data = request.get_json()
         name = data.get('name')
         password = data.get('password')
-        print(name)
-        print(password)
         try:
             user = User.objects.get(name=name)
         except User.DoesNotExist:
             return format_response(code=404, info='user does not exist')
-        print('user: ')
-        print(user.json)
+
         if user.verify(password):
             return format_response(data=user.json)
         else:
-            return format_response(code=401.1, info='name or password error')
+            return format_response(code=400, info='name or password error')
