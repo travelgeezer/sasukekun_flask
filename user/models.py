@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 
 import json
-from sasukekun_flask.ext import db
+from sasukekun_flask.ext import db, bcrypt
 
 
 class User(db.Document):
     name = db.StringField(max_length=256, required=True)
     password= db.StringField(max_length=256, required=True)
 
-    def __init__(self, name, password, *args, **kwargs):
-        super(db.Document, self).__init__(*args, **kwargs)
-        self.name = name
-        self.password = self.encryption(password)
-
-
     def encryption(self, password):
-        # Encrypted password
-        return password
+        # python2
+        # return bcrypt.generate_password_hash(password)
+        # python3
+        return bcrypt.generate_password_hash(password).decode('utf-8')
+
+
+    def verify(self, password):
+        print('verify:')
+        return bcrypt.check_password_hash(self.password, password)
+
 
     @property
     def json(self):
@@ -27,5 +29,5 @@ class User(db.Document):
     def __dict__(self):
         return {
             "name": self.name,
-            "password": "I won't tell you"
+            "password":self.password
         }
